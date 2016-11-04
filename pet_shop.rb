@@ -62,7 +62,17 @@ def add_pet_to_stock(shop, new_pet)
   shop[:pets] << new_pet
 end
 
-# def customer_pet_count(customer)
-#   for 
-#   end
-# end
+def customer_pet_count(customer)
+  pet_count = 0
+    for pet in customer[:pets]
+    pet_count += pet
+    end
+  return pet_count
+end
+
+def add_pet_to_customer(customer, pet_to_add)
+  for pet in customer
+    customer[:pets] << pet_to_add
+  end
+  return customer_pet_count(customer)
+end
