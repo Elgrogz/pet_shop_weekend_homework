@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require_relative '../pet_shop'
-require 'pry-byebug'
+require('pry-byebug')
 
 class TestPetShop < Minitest::Test
 
@@ -148,11 +148,11 @@ class TestPetShop < Minitest::Test
   #   assert_equal(0, count)
   # end
 
-  def test_add_pet_to_customer
-    customer = @customers[0]
-    add_pet_to_customer(customer, @new_pet)
-    assert_equal(1, customer_pet_count(customer))
-  end
+  # def test_add_pet_to_customer
+  #   customer = @customers[0]
+  #   add_pet_to_customer(customer, @new_pet)
+  #   assert_equal(1, customer_pet_count(customer))
+  # end
 
   # # OPTIONAL
 
@@ -170,16 +170,16 @@ class TestPetShop < Minitest::Test
 
   # #These are 'integration' tests so we want multiple asserts.
   # #If one fails the entire test should fail
-  # def test_sell_pet_to_customer__pet_found
-  #   customer = @customers[0]
-  #   pet = find_pet_by_name(@pet_shop,"Arthur")
+  def test_sell_pet_to_customer__pet_found
+    customer = @customers[0]
+    pet = find_pet_by_name(@pet_shop,"Arthur")
 
-  #   sell_pet_to_customer(@pet_shop, pet, customer)
+    sell_pet_to_customer(@pet_shop, pet, customer)
 
-  #   assert_equal(1, customer_pet_count(customer))
-  #   assert_equal(1, pets_sold(@pet_shop))
-  #   assert_equal(1900, total_cash(@pet_shop))
-  # end
+    assert_equal(1, customer_pet_count(customer))
+    assert_equal(1, pets_sold(@pet_shop))
+    assert_equal(1900, total_cash(@pet_shop))
+  end
 
   # def test_sell_pet_to_customer__pet_not_found
   #   customer = @customers[0]

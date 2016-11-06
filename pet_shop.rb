@@ -32,10 +32,10 @@ def pets_by_breed(shop, breed)
     return breed_count
 end
 
-def find_pet_by_name(shop, name)
+def find_pet_by_name(shop, pet_name)
 
   for pet in shop[:pets]
-    if name == pet[:name]
+    if pet_name == pet[:name]
       return pet
     end
   end
@@ -65,14 +65,38 @@ end
 def customer_pet_count(customer)
   pet_count = 0
     for pet in customer[:pets]
-    pet_count += pet
+    pet_count += 1
     end
   return pet_count
 end
 
-def add_pet_to_customer(customer, pet_to_add)
-  for pet in customer
-    customer[:pets] << pet_to_add
+def add_pet_to_customer(customer, pet)
+  customer[:pets] << pet
+end
+
+def customer_can_afford_pet(customer, pet)
+  if customer[:cash] >= pet[:price]
+    return true
+  else
+    return false
   end
-  return customer_pet_count(customer)
+end
+
+def sell_pet_to_customer(shop, pet, customer)
+  pet_found = false
+  if find_pet_by_name(shop, pet) == pet
+    pet_found = true
+  end
+
+  can_afford = false
+  if customer_can_afford_pet(customer, pet) == true
+    can_afford = true
+  end
+
+  if pet_found == true && can_afford == true
+    add_pet_to_customer(customer, pet)
+    customer[:cash] -= pet[:price]
+    shop[:admin][total_cash] += pet[:price]
+  end
+  binding.pry
 end
